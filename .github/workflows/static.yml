@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RyZe1v99 - Gerador de Sensi</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:linear-gradient(135deg,#000000,#111111,#1f1f1f);
+    color:white;
+    text-align:center;
+}
+
+.container{
+    padding:20px;
+}
+
+h1{
+    color:#00ffee;
+    text-shadow:0 0 15px #00ffee;
+}
+
+input, select{
+    padding:12px;
+    margin:8px;
+    border-radius:8px;
+    border:none;
+    width:85%;
+    max-width:320px;
+    font-weight:bold;
+}
+
+button{
+    padding:12px 25px;
+    border:none;
+    border-radius:10px;
+    background:#00ffee;
+    font-weight:bold;
+    cursor:pointer;
+    margin-top:10px;
+}
+
+.result{
+    margin-top:20px;
+    background:#222;
+    padding:20px;
+    border-radius:15px;
+    max-width:400px;
+    margin-left:auto;
+    margin-right:auto;
+    box-shadow:0 0 25px rgba(0,255,255,0.4);
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1>🔥 RyZe1v99</h1>
+    <h3>Gerador Inteligente de Sensi</h3>
+
+    <input type="text" id="modelo" placeholder="Modelo do celular">
+
+    <input type="number" id="dpi" placeholder="Digite sua DPI (ex: 400)">
+
+    <br>
+
+    <select id="estilo">
+        <option value="capa">Focado em Capa</option>
+        <option value="rush">Rushador</option>
+        <option value="balanceado">Balanceado</option>
+    </select>
+
+    <br>
+
+    <button onclick="gerarSensi()">Gerar Sensi</button>
+
+    <div class="result" id="resultado" style="display:none;"></div>
+</div>
+
+<script>
+function gerarSensi(){
+
+    let modelo = document.getElementById("modelo").value;
+    let dpi = parseInt(document.getElementById("dpi").value);
+    let estilo = document.getElementByById("estilo").value;
+
+    if(!modelo || !dpi){
+        alert("Preencha modelo e DPI!");
+        return;
+    }
+
+    let base = dpi / 10;
+
+    let geral = 80 + (base / 2);
+    let red = 75 + (base / 2);
+    let x2 = 65 + (base / 3);
+    let x4 = 55 + (base / 4);
+    let awm = 40 + (base / 5);
+    let olhadinha = 60 + (base / 3);
+
+    if(estilo === "capa"){
+        geral += 5;
+        red += 5;
+    }
+
+    if(estilo === "rush"){
+        geral += 3;
+        olhadinha += 5;
+    }
+
+    geral = Math.min(Math.round(geral),100);
+    red = Math.min(Math.round(red),100);
+    x2 = Math.min(Math.round(x2),100);
+    x4 = Math.min(Math.round(x4),100);
+    awm = Math.min(Math.round(awm),100);
+    olhadinha = Math.min(Math.round(olhadinha),100);
+
+    document.getElementById("resultado").style.display="block";
+    document.getElementById("resultado").innerHTML = `
+        📱 Modelo: ${modelo}<br>
+        🎯 DPI: ${dpi}<br><br>
+        🔥 <b>Sensibilidade Recomendada:</b><br><br>
+        Geral: ${geral}<br>
+        Red Dot: ${red}<br>
+        2x: ${x2}<br>
+        4x: ${x4}<br>
+        AWM: ${awm}<br>
+        Olhadinha: ${olhadinha}
+    `;
+}
+</script>
+
+</body>
+</html>
